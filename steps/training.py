@@ -1,6 +1,7 @@
 """ZenML steps for training the vision model."""
 
 import mlflow
+import os
 import numpy as np
 import torch
 from mlflow.models.signature import infer_signature
@@ -16,6 +17,18 @@ from tracking import (
 from zenml import step
 from zenml.client import Client
 from zenml.logger import get_logger
+
+# 1. Set your tracking server URL
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+
+# 2. Set your credentials here (or load them from secure environment variables)
+os.environ["MLFLOW_TRACKING_USERNAME"] = "admin"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "mlflow123"
+os.environ["MLFLOW_TRACKING_URI"] = "http://127.0.0.1:5000"
+
+# Test connection to verify it works
+client = mlflow.MlflowClient()
+print(client.search_experiments())
 
 logger = get_logger(__name__)
 
