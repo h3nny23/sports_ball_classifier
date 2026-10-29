@@ -42,3 +42,11 @@ $(RGB_TEST_DIR): $(TMP_DIR)
 
 clean-data:
 	rm -rf $(TMP_DIR)
+
+get-ball-data: 
+	kaggle datasets download -d samuelcortinhas/sports-balls-multiclass-image-classification --unzip
+	mkdir -p $(DATA_DIR)
+	mv test $(DATA_DIR) && mv train $(DATA_DIR)
+	python3 image_conversion.py
+	mv grey_test ./data
+	mv grey_train ./data
