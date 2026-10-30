@@ -33,4 +33,17 @@ pipx install kaggle
 If you have kaggle setup locally, skip this:
 
 Generate new kaggle api key token 
-run: mkdir -p ~/.kaggle && echo <YOUR_KAGGLE_API_KEY> > ~/.kaggle/access_token && chmod 600 ~/.kaggle/access_token
+run at root: mkdir -p ~/.kaggle && echo <YOUR_KAGGLE_API_KEY> > ~/.kaggle/access_token && chmod 600 ~/.kaggle/access_token
+
+Download all rgb ball images:
+
+make get-ball-data
+
+Version data:
+
+dvc add data
+dvc push
+
+git add .
+git commit -m "New data version, RGB images"
+git push
