@@ -36,7 +36,7 @@ def _load_split(data_dir: str, split: str) -> tuple[np.ndarray, np.ndarray]:
         label_map[character_dir.name] = idx
         image_files = [f for f in character_dir.iterdir() if f.name.endswith((".png", ".jpg"))]
         for file in image_files:
-            img = Image.open(file).convert("L")
+            img = Image.open(file).convert("RGB")
             img = img.resize((28, 28), Image.LANCZOS)
             transform = transforms.Compose(
                 [
